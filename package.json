@@ -1,0 +1,34 @@
+{
+  "name": "open_investigator",
+  "private": false,
+  "description": "This project is geared towrad creating a decent 'Where in the World is Carmen Sandiego' open source clone built with pixiJS, jQuery, and Google Maps.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Brendon Smith",
+    "email": "brendonsmith@seacloud9.org",
+    "url": "http://seacloud9.org"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/browservefy index.js 8080 -- -d"
+  },
+  "dependencies": {
+    "pixi": "0.0.1"
+  },
+  "devDependencies": {
+    "browservefy": "0.0.10"
+  },
+  "keywords": [
+    "pixi",
+    "adventure game",
+    "open adventure game"
+  ]
+}
