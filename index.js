@@ -14,20 +14,20 @@ $(function(){
     invSpri.scale.x = 0.65;
     invSpri.scale.y = 0.65;
     invSpri.height =  $(window).height();
-    invSpri.alpha = 0.8;
+    invSpri.alpha = 0.4;
 
-    var invTextureBG = PIXI.Texture.fromImage("assets/images/bgblue2.png");
+    var invTextureBG = PIXI.Texture.fromImage("assets/images/investigatorPixelated.png");
     invBgSpri = new PIXI.Sprite(invTextureBG);
     invBgSpri.position.x = -2;
     invBgSpri.position.y = 0;
     invBgSpri.scale.x = 0.65;
     invBgSpri.scale.y = 0.65;
     invBgSpri.height =  $(window).height();
-    invBgSpri.alpha = 0.6;
+    invBgSpri.alpha = 0.8;
     //invSpri.blendModes.SCREEN;
 
 
-    var bgTexture = PIXI.Texture.fromImage("assets/images/northbeach.jpg");
+    var bgTexture = PIXI.Texture.fromImage("assets/images/northbeachp.jpg");
     bgSpri = new PIXI.Sprite(bgTexture);
     bgSpri.position.x = 0;
     bgSpri.position.y = 20;
