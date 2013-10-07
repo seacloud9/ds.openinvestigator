@@ -1,10 +1,13 @@
 $(function(){
 	var PIXI = require('pixi')
     // You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
-    var renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height()); 
-    $('#mainPixiIntro').append(renderer.view);
 
-    var stage = new PIXI.Stage;
+    renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height()); 
+    canvas = fx.canvas();
+    $('#mainPixiIntro').append(renderer.view);
+    var openILogoAni = true;
+    var interactive = true;
+    var stage = new PIXI.Stage(0x000000, interactive);
     var invTexture = PIXI.Texture.fromImage("assets/images/investigator.png");
     goRt = true;
     invMaxSprtX = 200;
@@ -42,14 +45,50 @@ $(function(){
     openILogo.scale.x = 1;
     openILogo.scale.y = 1;
 
+    var openILogoTa = PIXI.Texture.fromImage("assets/images/openIlogoa.png");
+    openILogoa = new PIXI.Sprite(openILogoTa);
+    openILogoa.position.x = (($(window).width() / 2) - 408.5);
+    openILogoa.position.y = (($(window).height() / 2) - 58.5);;
+    openILogoa.scale.x = 1;
+    openILogoa.scale.y = 1;
+    openILogoa.alpha = 0;
+
+    var openILogoTb = PIXI.Texture.fromImage("assets/images/openIlogb.png");
+    openILogob = new PIXI.Sprite(openILogoTb);
+    openILogob.position.x = (($(window).width() / 2) - 408.5);
+    openILogob.position.y = (($(window).height() / 2) - 58.5);;
+    openILogob.scale.x = 1;
+    openILogob.scale.y = 1;
+    openILogob.alpha = 0;
+    
 
     stage.addChild(bgSpri);
     stage.addChild(invBgSpri);
     stage.addChild(invSpri);
     stage.addChild(openILogo);
+    
+    stage.addChild(openILogob);
+    stage.addChild(openILogoa);
+
     requestAnimationFrame(animate);
 
     function animate() {
+        openILogob.setInteractive(true);
+        openILogob.click = openILogob.tap = function(){
+            $('#mainPixiIntro').fadeOut('fast', function(){
+                $('#mainPixiIntro').remove('canvas');
+                $('.uiContainer').fadeIn('slow', function(){
+                 initialize();
+             });
+            })
+        }
+
+        if(openILogob.alpha <= 1){
+            if(openILogob.alpha >= 0){
+                openILogob.alpha += 0.005;
+            }
+            
+        }
 
         if(goRt){
             if(invSpri.position.x  < invMaxSprtX){
@@ -58,21 +97,21 @@ $(function(){
               bgSpri.position.x -= 1.5;
           }else{
             goRt = false;
-          }
-            
-        }else{
-            if(invSpri.position.x  > 0){
-                invSpri.position.x -= 0.5;
-                invBgSpri.position.x -= 0.5;
-                bgSpri.position.x += 1.5;
-            }else{
-                goRt = true;
-            }
         }
         
-
-        renderer.render(stage);
-
-        requestAnimationFrame(animate);
+    }else{
+        if(invSpri.position.x  > 0){
+            invSpri.position.x -= 0.5;
+            invBgSpri.position.x -= 0.5;
+            bgSpri.position.x += 1.5;
+        }else{
+            goRt = true;
+        }
     }
+    
+
+    renderer.render(stage);
+
+    requestAnimationFrame(animate);
+}
 })
