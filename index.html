@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Open Investigator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <!--<link href='http://fonts.googleapis.com/css?family=Snippet|Arvo:700italic|Podkova' rel='stylesheet' type='text/css'>-->
 	<!-- Loading Bootstrap -->
 	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
@@ -33,6 +33,7 @@
       .lft25px{left:25px;}
       .lft27px{left:27px;}
       #mainPixiIntro{position: absolute;z-index: 99999999; float: left; width: 100%; left: 0px;}
+      #mainPixiInfo{width:100%;}
       .uiContainer{display: none;}
 
       html, body {
@@ -63,7 +64,7 @@
 
       </style>
     </head>
-    <body onload="rain();">
+    <body>
      <div class="container">
       <div id="sound" style="z-index: -1;"></div>
       <img id="background" src="" />
@@ -172,25 +173,31 @@
 <!-- Load JS here for greater good =============================-->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>   
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>   
-<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-<script src="js/jquery.ui.touch-punch.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/bootstrap-select.js"></script>
-<script src="js/bootstrap-switch.js"></script>
-<script src="js/flatui-checkbox.js"></script>
-<script src="js/flatui-radio.js"></script>
-<script src="js/jquery.tagsinput.js"></script>
-<script src="js/jquery.placeholder.js"></script>
-<script  src="bundle.js"></script> 
 <script src="js/rainyday.js"></script>
-<script src="js/glfx.js"></script>
+<script  src="bundle.js"></script> 
+<!--<script src="js/glfx.js"></script> -->
 
 
 <script type="text/javascript">
+WebFontConfig = {
+    google: {
+      families: [ 'Snippet', 'Arvo:700italic', 'Podkova:700' ]
+    }
+
+  };
+(function() {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
 function getURLParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
-
+/*
 function rain() {
   var image = document.getElementById('background');
   image.onload = function() {
@@ -240,7 +247,7 @@ function initialize() {
   };
   panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
   map.setStreetView(panorama);
-}
+}*/
 </script>
 </body>
 </html>

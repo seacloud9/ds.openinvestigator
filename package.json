@@ -20,9 +20,6 @@
   "scripts": {
     "start": "node_modules/.bin/browservefy index.js 8080 -- -d"
   },
-  "dependencies": {
-    "pixi": "0.0.1"
-  },
   "devDependencies": {
     "browservefy": "0.0.10"
   },

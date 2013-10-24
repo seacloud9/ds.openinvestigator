@@ -1,0 +1,55 @@
+{
+  "openI": {
+    "story": "story text"
+  },
+  "storyObj": {
+    "sceneArr": [
+      {
+        "villans": [
+          {
+            "villan": {
+              "level": 0,
+              "about": "String",
+              "loc": {
+                "lat": 37.795576,
+                "long": -122.399004
+              }
+            }
+          }
+        ],
+        "scene": [
+          {
+            "results": [
+              "String"
+            ],
+            "choices": [
+              "choice"
+            ],
+            "loc": {
+              "lat": 37.795576,
+              "long": -122.399004
+            }
+          },
+          {
+            "results": [
+              "String"
+            ],
+            "choices": [
+              "choice"
+            ],
+            "loc": {
+              "lat": 37.795576,
+              "long": -122.399004
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "hero": {
+    "points": 2012,
+    "scene": 0,
+    "sceneOption": 0,
+    "hasWarrant": false
+  }
+}
