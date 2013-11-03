@@ -1,11 +1,64 @@
 {
+  "detectiveBrief": {
+    "location": "String",
+    "victim": "String",
+    "casenumber": "String",
+    "rank": "String",
+    "dectective": "String",
+    "deadline": "String"
+  },
   "openI": {
     "story": "story text"
   },
   "storyObj": {
     "sceneArr": [
       {
-        "villans": [
+        "evidence": [
+          
+        ],
+        "random_events": [
+          
+        ],
+        "villains": [
+          {
+            "villan": {
+              "level": 0,
+              "about": "String",
+              "loc": {
+                "lat": 37.795576,
+                "long": -122.399004
+              }
+            }
+          }
+        ],
+        "scene": [
+          {
+            "storySequence": "detectiveOS$:  ACME Detective agency    this just in there have been reports 2       people have been murdered in Bencia      California on a lovers lane.  You must go  there and inspect the crime scene             report there immediately.  ",
+            "results": [
+              "String"
+            ],
+            "choices": [
+              "choice"
+            ],
+            "loc": {
+              "pov": {
+                "pitch": 20,
+                "heading": 95
+              },
+              "lat": 37.792541,
+              "long": -122.404411
+            }
+          }
+        ]
+      },
+      {
+        "evidence": [
+          
+        ],
+        "random_events": [
+          
+        ],
+        "villains": [
           {
             "villan": {
               "level": 0,
@@ -26,20 +79,12 @@
               "choice"
             ],
             "loc": {
-              "lat": 37.795576,
-              "long": -122.399004
-            }
-          },
-          {
-            "results": [
-              "String"
-            ],
-            "choices": [
-              "choice"
-            ],
-            "loc": {
-              "lat": 37.795576,
-              "long": -122.399004
+              "pov": {
+                "pitch": 20,
+                "heading": 95
+              },
+              "lat": 37.792541,
+              "long": -122.404411
             }
           }
         ]

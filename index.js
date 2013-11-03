@@ -1,6 +1,7 @@
 
-var _jQCustom = require('./js/jquery-ui-1.10.3.custom.min.js');
+var _jQCustom = require('./js/jquery-ui-1.10.3.custom.min.js'); 
 var _jQTouchPunch = require('./js/jquery.ui.touch-punch.min.js');
+var _jQStateMachine = require('./js/jquery-machine.1.0.0.js');
 var _bootstrap = require('./js/bootstrap.min.js');
 var _bootstrapselect = require('./js/bootstrap-select.js');
 var _bootstrapswitch = require('./js/bootstrap-switch.js');
@@ -8,12 +9,13 @@ var _flatuicheckbox = require('./js/flatui-checkbox.js');
 var _flatuiratio = require('./js/flatui-radio.js');
 var _jQtags = require('./js/jquery.tagsinput.js');
 var _jQplaceholder = require('./js/jquery.placeholder.js');
+_storyOBJ = require('./assets/openIObj.json');
 var PIXI = require('./js/pixi.js');
 
 
 
 function initialize() {
-  loc = new google.maps.LatLng(37.795576,-122.399004);
+  loc = new google.maps.LatLng(_storyOBJ.storyObj.sceneArr[0].scene[0].loc.lat,_storyOBJ.storyObj.sceneArr[0].scene[0].loc.long);
   var mapOptions = {
     center: loc,
     zoom: 14,
@@ -24,12 +26,13 @@ function initialize() {
   panoramaOptions = {
     position: loc,
     pov: {
-      heading: 34,
-      pitch: 10
+      heading: _storyOBJ.storyObj.sceneArr[0].scene[0].loc.pov.heading,
+      pitch: _storyOBJ.storyObj.sceneArr[0].scene[0].loc.pov.pitch
     }
   };
   panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
   map.setStreetView(panorama);
+  startUp();
 }
 
 
@@ -186,14 +189,13 @@ $(function(){
 
 
 startUp = function(){
-    // You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
-    var txt2Render = "detectiveOS$:  Hello World.";
+    var txt2Render = _storyOBJ.storyObj.sceneArr[0].scene[0].storySequence;
     renderer1 = new PIXI.CanvasRenderer($('#mainPixiInfo').width(), $('#mainPixiInfo').height(), document.getElementById('mainPixiInfo')); 
    // $('#mainPixiInfo').append(renderer1.view);
     var interactive = true;
     var currentText = txt2Render[0];
     var stage1 = new PIXI.Stage(0x002600, interactive);
-    var terminalText = new PIXI.Text(currentText, {font: "bold italic 20px Arvo", fill: "#00ff01", align: "left", stroke: "#a7f7a7", strokeThickness: 1});
+    var terminalText = new PIXI.Text(currentText, {font: "bold italic 20px Arvo", fill: "#00ff01", align: "left", stroke: "#a7f7a7", strokeThickness: 1, wordWrap:true, wordWrapWidth: 430});
         terminalText.position.x = 15;
         terminalText.position.y = 10;
         terminalText.anchor.x = 1;
@@ -209,7 +211,7 @@ startUp = function(){
                 count = 0;
                 // update the text...
                 terminalText.setText(currentText+=txt2Render[tCount]);
-                console.log(terminalText.width);
+                //console.log(terminalText.width);
                 terminalText.position.x = (terminalText.width + 10);
                 tCount++;
             }
