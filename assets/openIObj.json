@@ -1,21 +1,30 @@
 {
-  "detectiveBrief": {
-    "location": "String",
-    "victim": "String",
-    "casenumber": "String",
-    "rank": "String",
-    "dectective": "String",
-    "deadline": "String"
-  },
-  "openI": {
-    "story": "story text"
-  },
   "storyObj": {
     "sceneArr": [
       {
         "evidence": [
           
         ],
+        "scene": [
+          {
+            "action": "sceneIncrementFunction(1);",
+            "results": [
+              "String"
+            ],
+            "loc": {
+              "pov": {
+                "pitch": 20,
+                "heading": 95
+              },
+              "lat": 37.792541,
+              "long": -122.404411
+            },
+            "storySequence": "detectiveOS$:  ACME Detective agency    this just in there have been reports 2       people have been murdered in Bencia      California on a lovers lane.  You must go  there and inspect the crime scene             report there immediately.  ",
+            "choices": [
+              "choice"
+            ]
+          }
+        ],
         "random_events": [
           
         ],
@@ -28,32 +37,33 @@
                 "lat": 37.795576,
                 "long": -122.399004
               }
-            }
-          }
-        ],
-        "scene": [
-          {
-            "storySequence": "detectiveOS$:  ACME Detective agency    this just in there have been reports 2       people have been murdered in Bencia      California on a lovers lane.  You must go  there and inspect the crime scene             report there immediately.  ",
-            "results": [
-              "String"
-            ],
-            "choices": [
-              "choice"
-            ],
-            "loc": {
-              "pov": {
-                "pitch": 20,
-                "heading": 95
-              },
-              "lat": 37.792541,
-              "long": -122.404411
             }
           }
         ]
       },
       {
+        "action": "function() { console.log('running...'); }",
         "evidence": [
           
+        ],
+        "scene": [
+          {
+            "storySequence": "   Daniel a 17 year old male, and Katharine a 16 year old female have been shot and killed on December 20.",
+            "results": [
+              "String"
+            ],
+            "choices": [
+              "choice"
+            ],
+            "loc": {
+              "pov": {
+                "pitch": 20,
+                "heading": 95
+              },
+              "lat": 38.095104,
+              "long": -122.14179
+            }
+          }
         ],
         "random_events": [
           
@@ -67,24 +77,6 @@
                 "lat": 37.795576,
                 "long": -122.399004
               }
-            }
-          }
-        ],
-        "scene": [
-          {
-            "results": [
-              "String"
-            ],
-            "choices": [
-              "choice"
-            ],
-            "loc": {
-              "pov": {
-                "pitch": 20,
-                "heading": 95
-              },
-              "lat": 37.792541,
-              "long": -122.404411
             }
           }
         ]
@@ -93,8 +85,19 @@
   },
   "hero": {
     "points": 2012,
+    "hasWarrant": false,
     "scene": 0,
-    "sceneOption": 0,
-    "hasWarrant": false
+    "sceneOption": 0
+  },
+  "detectiveBrief": {
+    "dectective": "String",
+    "deadline": "String",
+    "casenumber": "String",
+    "rank": "String",
+    "location": "String",
+    "victim": "String"
+  },
+  "openI": {
+    "story": "story text"
   }
 }

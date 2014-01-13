@@ -10,8 +10,8 @@ var _flatuiratio = require('./js/flatui-radio.js');
 var _jQtags = require('./js/jquery.tagsinput.js');
 var _jQplaceholder = require('./js/jquery.placeholder.js');
 _storyOBJ = require('./assets/openIObj.json');
-var PIXI = require('./js/pixi.js');
-
+PIXI = require('./js/pixi.dev.js');
+time=0;
 
 
 function initialize() {
@@ -72,8 +72,10 @@ $(function(){
 
     // You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
 
-    renderer = new PIXI.CanvasRenderer($(window).width(), $(window).height()); 
+    renderer = new PIXI.WebGLRenderer($(window).width(), $(window).height()); 
     $('#mainPixiIntro').append(renderer.view);
+    var introContainer = new PIXI.DisplayObjectContainer();
+    
     var openILogoAni = true;
     var interactive = true;
     var stage = new PIXI.Stage(0x000000, interactive);
@@ -129,21 +131,39 @@ $(function(){
     openILogob.scale.x = 1;
     openILogob.scale.y = 1;
     openILogob.alpha = 0;
+
+    stage.addChild(introContainer);
+    filtersToApply = [];
+    var pixelateFilter = new PIXI.PixelateFilter();
+    pixelateFilter.size.x = 100;
+    pixelateFilter.size.y = 100;
+    filtersToApply.push(pixelateFilter);
+
     
 
-    stage.addChild(bgSpri);
-    stage.addChild(invBgSpri);
-    stage.addChild(invSpri);
-    stage.addChild(openILogo);
+    introContainer.addChild(bgSpri);
+    introContainer.addChild(invBgSpri);
+    introContainer.addChild(invSpri);
+    introContainer.addChild(openILogo);
     
-    stage.addChild(openILogob);
-    stage.addChild(openILogoa);
+    introContainer.addChild(openILogob);
+    introContainer.addChild(openILogoa);
     
     requestAnimationFrame(animate);
 
     function animate() {
-        openILogob.setInteractive(true);
-        openILogob.click = openILogob.tap = function(){
+      var now = new Date().getTime(),dt = now - (time || now);
+ 
+        time = now;
+
+        if(time  % 1 === 0 && filtersToApply[0].size.x > 1){
+          filtersToApply[0].size.x -= 1;
+          filtersToApply[0].size.y -= 1;
+        }
+
+        introContainer.filters = filtersToApply.length > 0 ? filtersToApply : null;
+        introContainer.setInteractive(true);
+        introContainer.click = introContainer.tap = function(){
             $('#mainPixiIntro').fadeOut('fast', function(){
                 $('#mainPixiIntro').remove('canvas');
                 $('.uiContainer').fadeIn('slow', function(){
@@ -187,32 +207,83 @@ $(function(){
 
 });
 
+function sceneIncrementFunction(current){
+  txt2Render = '';
+  txt2Render = _storyOBJ.storyObj.sceneArr[current].scene[0].storySequence;
+  currentText = '';
+  currentText = txt2Render[0];
+  /*var t1 = new PIXI.Text(currentText, {font: "bold italic 20px Arvo", fill: "#00ff01", align: "left", stroke: "#a7f7a7", strokeThickness: 1, wordWrap:true, wordWrapWidth: 430});
+  t1.position.x = 15;
+  t1.position.y = 10;
+  t1.anchor.x = 1;   */
+  stage1.children[0].children[0].text = "";
+  tCount = 1;
+  count = 0;
+  stage1.children[0].children[0].text = currentText;
+  //stage1.children[0].addChild(t1);
+
+  //mapping
+  loc = new google.maps.LatLng(_storyOBJ.storyObj.sceneArr[current].scene[0].loc.lat,_storyOBJ.storyObj.sceneArr[current].scene[0].loc.long);
+  var mapOptions = {
+    center: loc,
+    zoom: 14,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  $('#pano').html('');
+  $('#mapCanvas').html('');
+  map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
+
+  panoramaOptions = {
+    position: loc,
+    pov: {
+      heading: _storyOBJ.storyObj.sceneArr[current].scene[0].loc.pov.heading,
+      pitch: _storyOBJ.storyObj.sceneArr[current].scene[0].loc.pov.pitch
+    }
+  };
+
+  panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
+  map.setStreetView(panorama);
+
+}
+
 
 startUp = function(){
-    var txt2Render = _storyOBJ.storyObj.sceneArr[0].scene[0].storySequence;
+    sqOrder = 0;
+    txt2Render = _storyOBJ.storyObj.sceneArr[sqOrder].scene[sqOrder].storySequence;
     renderer1 = new PIXI.CanvasRenderer($('#mainPixiInfo').width(), $('#mainPixiInfo').height(), document.getElementById('mainPixiInfo')); 
    // $('#mainPixiInfo').append(renderer1.view);
     var interactive = true;
-    var currentText = txt2Render[0];
-    var stage1 = new PIXI.Stage(0x002600, interactive);
+    currentText = txt2Render[0];
+    stage1 = new PIXI.Stage(0x002600, interactive);
     var terminalText = new PIXI.Text(currentText, {font: "bold italic 20px Arvo", fill: "#00ff01", align: "left", stroke: "#a7f7a7", strokeThickness: 1, wordWrap:true, wordWrapWidth: 430});
-        terminalText.position.x = 15;
-        terminalText.position.y = 10;
-        terminalText.anchor.x = 1;
+    terminalText.position.x = 15;
+    terminalText.position.y = 10;
+    terminalText.anchor.x = 1;   
+    mainPixiInfoContainer = new PIXI.DisplayObjectContainer();
+    mainPixiInfoContainer.addChild(terminalText);
+    mainPixiInfoContainer.width = mainPixiInfoContainer._bounds.width = $('#mainPixiInfo').width();
+    mainPixiInfoContainer.height = mainPixiInfoContainer._bounds.height = $('#mainPixiInfo').height();
+    mainPixiInfoContainer.hitArea = new PIXI.Rectangle(0, 0, mainPixiInfoContainer.width, mainPixiInfoContainer.height);
+    stage1._bounds = new PIXI.Rectangle(0, 0, mainPixiInfoContainer.width, mainPixiInfoContainer.height);
+    stage1.addChild(mainPixiInfoContainer);
+    mainPixiInfoContainer.setInteractive(true);
+    mainPixiInfoContainer.buttonMode = true;
+    mainPixiInfoContainer.click = mainPixiInfoContainer.tap =  function(){eval(_storyOBJ.storyObj.sceneArr[sqOrder].scene[sqOrder].action)};
 
-    stage1.addChild(terminalText);
+  
 
-    var count = 0;
-    var tCount = 1;
+    //stage1.addChild(mainPixiInfoDisplay);
+    count = 0;
+    tCount = 1;
     function animateText() {   
+            
             count++;
             if(count == 2 && txt2Render.length > tCount)
             {
                 count = 0;
                 // update the text...
-                terminalText.setText(currentText+=txt2Render[tCount]);
-                //console.log(terminalText.width);
-                terminalText.position.x = (terminalText.width + 10);
+                mainPixiInfoContainer.children[0].setText(currentText+=txt2Render[tCount]);
+                mainPixiInfoContainer.children[0].position.x = (terminalText.width + 10);
                 tCount++;
             }
             // render the stage   
