@@ -441,13 +441,13 @@ address {
   white-space: normal;
 }
 .btn {
-  border: none;
-  background: #bdc3c7;
-  color: #ffffff;
-  padding: 9px 12px 10px;
-  line-height: 22px;
+  border: none ;
+  background: #bdc3c7 !important;
+  color: #ffffff !important;
+  padding: 9px 12px 10px !important;
+  line-height: 22px !important;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 6px !important;
   -webkit-transition: 0.25s linear;
   -moz-transition: 0.25s linear;
   -o-transition: 0.25s linear;
@@ -517,9 +517,9 @@ address {
 }
 .btn.btn-sm,
 .input-group-sm .btn {
-  font-size: 13px;
-  line-height: 20px;
-  padding: 6px 13px 8px;
+  font-size: 13px !important;
+  line-height: 20px !important;
+  padding: 6px 13px 8px !important;
 }
 .btn.btn-sm > [class^="fui-"],
 .input-group-sm .btn > [class^="fui-"] {
@@ -549,12 +549,12 @@ address {
   background-color: #16a085;
 }
 .btn.btn-info {
-  background-color: #3498db;
+  background-color: #3498db !important;
 }
 .btn.btn-info:hover,
 .btn.btn-info:focus,
 .btn-group:focus .btn.btn-info.dropdown-toggle {
-  background-color: #5dade2;
+  background-color: #5dade2 !important;
 }
 .btn.btn-info:active,
 .btn-group.open .btn.btn-info.dropdown-toggle,

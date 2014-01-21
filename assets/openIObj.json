@@ -48,16 +48,58 @@
         ],
         "scene": [
           {
-            "storySequence": "   Daniel a 17 year old male, and Katharine a 16 year old female have been shot and killed on December 20.",
+            "storySequence": " detectiveOS$: Daniel a 17 year old male, and Katharine a 16 year old female have been shot and killed. The scene is extremley gruesome. This is a quiet community that will be seeking answers immediately. You must act quickly to gather evidence and convict a murder.  Use the options menu to continue.",
+            "storySequenceJpg": {
+              "height": "",
+              "width": "$('#panoSceneCanvas').width();",
+              "img": "assets/images/csi.jpg",
+              "x": 0,
+              "y": 0,
+              "scaleX": 0.5,
+              "scaleY": 0.5
+            },
+            "choicesImgs": [
+              {
+                "height": "$('#panoSceneCanvas').height();",
+                "width": "",
+                "img": "assets/images/crime_scene.jpg",
+                "x": 0,
+                "y": 0,
+                "scaleX": 1.5,
+                "scaleY": 1.5
+              },
+              {
+                "height": "$('#panoSceneCanvas').height();",
+                "width": "",
+                "img": "assets/images/whitnessJacob.jpg",
+                "x": 0,
+                "y": 0,
+                "scaleX": 0.32,
+                "scaleY": 0.3
+              },
+              {
+                "height": "$('#panoSceneCanvas').height();",
+                "width": "",
+                "img": "assets/images/crime_scene.jpg",
+                "x": 0,
+                "y": 0,
+                "scaleX": 2.5,
+                "scaleY": 2.5
+              }
+            ],
             "results": [
-              "String"
+              "The CSI Investgators of outlined some evidence.  You need to examine the scene and build up evidence to find the susupect.",
+              "You meet Jacob a farmer who lives near to lake herman. He says he saw a black suv with a hunter in the area.  He also said the hunter was covered in blood.",
+              "The CSI Investgators of outlined some evidence.  You need to examine the scene and build up evidence to find the susupect."
             ],
             "choices": [
-              "choice"
+              "Examine the area for evidence",
+              "Search for whitnesses",
+              "Report to headquaters"
             ],
             "loc": {
               "pov": {
-                "pitch": 20,
+                "pitch": 0,
                 "heading": 95
               },
               "lat": 38.095104,
@@ -84,6 +126,9 @@
     ]
   },
   "hero": {
+    "evidence": [
+      
+    ],
     "points": 2012,
     "hasWarrant": false,
     "scene": 0,

@@ -20,6 +20,8 @@
       <style type="text/css">
       .marginTop20px{margin-top: 20px;}
       .radius6px{border-radius: 6px;}
+      .display0{display: none}
+      #panoSceneCanvas{z-index: 9999; position:absolute;}
       .canvasMain{width:100%;  background-color: #000}
       .minHeight400px{min-height: 400px;}
       .minHeight260px{min-height: 260px;}
@@ -35,6 +37,7 @@
       #mainPixiIntro{position: absolute;z-index: 99999999; float: left; width: 100%; left: 0px;}
       #mainPixiInfo{width:100%;}
       .uiContainer{display: none;}
+      .navbarOveride { min-height: 0px !important; border: none !important; margin-bottom: 0px !important;}
 
       html, body {
         height: 100%;
@@ -82,25 +85,25 @@
           <div class="navbar-collapse collapse" id="nav-collapse-01">
             <ul class="nav">
              <li class="active">
-              <a href="#fakelink">
+              <a href="javascript:void(0);">
                Messages
                <span class="navbar-unread">1</span>
              </a>
              <ul>
-               <li><a href="#fakelink">Element One</a></li>
+               <li><a href="javascript:void(0);">Element One</a></li>
                <li>
-                <a href="#fakelink">Sub menu</a>
+                <a href="javascript:void(0);">Sub menu</a>
                 <ul>
-                 <li><a href="#fakelink">Element One</a></li>
-                 <li><a href="#fakelink">Element Two</a></li>
-                 <li><a href="#fakelink">Element Three</a></li>
+                 <li><a href="javascript:void(0);">Element One</a></li>
+                 <li><a href="javascript:void(0);">Element Two</a></li>
+                 <li><a href="javascript:void(0);">Element Three</a></li>
                </ul> <!-- /Sub menu -->
              </li>
-             <li><a href="#fakelink">Element Three</a></li>
+             <li><a href="javascript:void(0);">Element Three</a></li>
            </ul> <!-- /Sub menu -->
          </li>
          <li>
-          <a href="#fakelink">
+          <a href="javascript:void(0);">
            Settings
          </a>
        </li>
@@ -113,32 +116,46 @@
   <div class="col-md-3">
    <div class="tile">
     <div class="row marginTop20px">
-     <div class="col-md-12"><a href="#fakelink" class="btn btn-block btn-sm btn-info positionRelative"><img src="assets/glyph/warrant.png" class="positionAbsolute lft13px"  />Warrant</a></div>
+     <div class="col-md-12"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info positionRelative"><img src="assets/glyph/warrant.png" class="positionAbsolute lft13px"  />Warrant</a></div>
    </div>
    <div class="row marginTop20px">
-     <div class="col-md-12"><a href="#fakelink" class="btn btn-block btn-sm btn-info"><img class="positionAbsolute lft27px" src="assets/glyph/travel.png" />Travel</a></div>
+     <div class="col-md-12"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info"><img class="positionAbsolute lft27px" src="assets/glyph/travel.png" />Travel</a></div>
    </div>
    <div class="row marginTop20px">
-     <div class="col-md-12"><a href="#fakelink" class="btn btn-block btn-sm btn-info"><img class="positionAbsolute lft27px"  src="assets/glyph/crimenet.png" />Crime Net</a></div>
+     <div class="col-md-12"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info"><img class="positionAbsolute lft27px"  src="assets/glyph/crimenet.png" />Crime Net</a></div>
    </div>
  </div>
 </div> 
 
 <div class="col-md-9 demo-video">
  <div class="tile">
+  
   <div class="radius6px canvasMain minHeight400px" id="pano" style="height:400px;" >
-
   </div>
 </div>
 <div class="row marginTop20px">
   <div class="col-md-7">
    <div class="tile">
 
-    <div class="row">
-     <div class="col-md-3"><a href="#fakelink" class="btn btn-block btn-sm btn-info">Evidence</a></div>
-     <div class="col-md-3"><a href="#fakelink" class="btn btn-block btn-sm btn-info">Dossiers</a></div>
-     <div class="col-md-3"><a href="#fakelink" class="btn btn-block btn-sm btn-info">Location</a></div>
-     <div class="col-md-3"><a href="#fakelink" class="btn btn-block btn-sm btn-info">Options</a></div>
+    <div class="row mainUIOptions">
+     <div class="col-md-3"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info">Evidence</a></div>
+     <div class="col-md-3"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info">Dossiers</a></div>
+     <div class="col-md-3 locationBtn"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info">Location</a></div>
+
+
+         <div class="navbar col-md-3 navbarOveride">
+           <div class="navbar-header">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target="#nav-collapse-02"></button>
+          </div>
+        <div class="navbar-collapse collapse " id="nav-collapse-02">
+            <ul class="nav navOptions">
+             <li class="active">
+              <a href="javascript:void(0);" class="btn btn-block btn-sm btn-info">Options</a>
+         </li>
+     </ul>
+   </div><!--/.nav -->
+ </div>
+
    </div>
    <div class="row marginTop20px">
      <div class="col-md-12">
@@ -148,9 +165,9 @@
     </div>
   </div>
   <div class="row marginTop20px">
-   <div class="col-md-4"><a href="#fakelink" class="btn btn-block btn-sm btn-info">Send/Recieve</a></div>
-   <div class="col-md-4"><a href="#fakelink" class="btn btn-block btn-sm btn-info">More</a></div>
-   <div class="col-md-4"><a href="#fakelink" class="btn btn-block btn-sm btn-info">Cancel/Delete</a></div>
+   <div class="col-md-4"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info">Send/Recieve</a></div>
+   <div class="col-md-4"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info">More</a></div>
+   <div class="col-md-4"><a href="javascript:void(0);" class="btn btn-block btn-sm btn-info">Cancel/Delete</a></div>
  </div>
 </div>
 </div>
@@ -197,57 +214,7 @@ WebFontConfig = {
 function getURLParameter(name) {
   return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 }
-/*
-function rain() {
-  var image = document.getElementById('background');
-  image.onload = function() {
-    var engine = new RainyDay('canvas','background', window.innerWidth, window.innerHeight, 1, 5);
 
-    var preset = getURLParameter("preset") || 1;
-    if (preset == 1) {
-      engine.gravity = engine.GRAVITY_NON_LINEAR;
-      engine.trail = engine.TRAIL_DROPS;
-      engine.rain([ engine.preset(3, 3, 0.88), engine.preset(5, 5, 0.9), engine.preset(6, 2, 1) ], 100);
-    } else if (preset == 2) {
-      engine.gravity = engine.GRAVITY_NON_LINEAR;
-      engine.trail = engine.TRAIL_DROPS;
-      engine.VARIABLE_GRAVITY_ANGLE = Math.PI / 8;
-      engine.rain([ engine.preset(0, 2, 0.5), engine.preset(4, 4, 1) ], 50);
-    }
-  };
-  image.crossOrigin = "anonymous";
-  image.src="assets/images/sfbg.jpg";
-  var youtube = getURLParameter("youtube");
-  if (youtube) {
-    var div = document.getElementById("sound");
-
-    var player = document.createElement('iframe');
-    player.frameborder = "0";
-    player.height = "1";
-    player.width = "1";
-    player.src = "https://youtube.com/embed/" + youtube + "?autoplay=1&controls=0&showinfo=0&autohide=1&loop=1";
-    div.appendChild(player);
-  }
-}
-function initialize() {
-  loc = new google.maps.LatLng(37.795576,-122.399004);
-  var mapOptions = {
-    center: loc,
-    zoom: 14,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
-
-  panoramaOptions = {
-    position: loc,
-    pov: {
-      heading: 34,
-      pitch: 10
-    }
-  };
-  panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
-  map.setStreetView(panorama);
-}*/
 </script>
 </body>
 </html>
