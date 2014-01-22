@@ -80,17 +80,40 @@
               {
                 "height": "$('#panoSceneCanvas').height();",
                 "width": "",
-                "img": "assets/images/crime_scene.jpg",
+                "img": "assets/images/office.jpg",
                 "x": 0,
                 "y": 0,
-                "scaleX": 2.5,
-                "scaleY": 2.5
+                "scaleX": 0.85,
+                "scaleY": 0.85
               }
             ],
             "results": [
-              "The CSI Investgators of outlined some evidence.  You need to examine the scene and build up evidence to find the susupect.",
-              "You meet Jacob a farmer who lives near to lake herman. He says he saw a black suv with a hunter in the area.  He also said the hunter was covered in blood.",
-              "The CSI Investgators of outlined some evidence.  You need to examine the scene and build up evidence to find the susupect."
+              {
+                "plot": "The CSI Investgators of outlined some evidence.  You need to examine the scene and build up evidence to find the susupect.",
+                "options": [
+                  
+                ]
+              },
+              {
+                "plot": "You meet Jacob a farmer who lives near to lake herman. He says he saw a black suv with a hunter in the area.  He also said the hunter was covered in blood.",
+                "options": [
+                  
+                ]
+              },
+              {
+                "loc": {
+                  "pov": {
+                    "pitch": 20,
+                    "heading": 95
+                  },
+                  "lat": 37.792541,
+                  "long": -122.404411
+                },
+                "plot": "You report back to the headquarters and your capitain wants to speak with you immediately.",
+                "options": [
+                  
+                ]
+              }
             ],
             "choices": [
               "Examine the area for evidence",

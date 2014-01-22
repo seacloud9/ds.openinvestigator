@@ -17,23 +17,9 @@ var aniWebGL;
 window.openI = {};
 
 function initialize() {
-  loc = new google.maps.LatLng(_storyOBJ.storyObj.sceneArr[0].scene[0].loc.lat,_storyOBJ.storyObj.sceneArr[0].scene[0].loc.long);
-  var mapOptions = {
-    center: loc,
-    zoom: 14,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-  map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
+  opts={lat:_storyOBJ.storyObj.sceneArr[0].scene[0].loc.lat,long: _storyOBJ.storyObj.sceneArr[0].scene[0].loc.long, pitch: _storyOBJ.storyObj.sceneArr[0].scene[0].loc.pov.pitch, heading: _storyOBJ.storyObj.sceneArr[0].scene[0].loc.pov.heading};
+  window.openI.geoLocate(opts);
 
-  panoramaOptions = {
-    position: loc,
-    pov: {
-      heading: _storyOBJ.storyObj.sceneArr[0].scene[0].loc.pov.heading,
-      pitch: _storyOBJ.storyObj.sceneArr[0].scene[0].loc.pov.pitch
-    }
-  };
-  panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
-  map.setStreetView(panorama);
   startUp();
 }
 
@@ -252,9 +238,20 @@ function sceneIncrementFunction(current){
     });
 
   }
-
   //mapping
-  loc = new google.maps.LatLng(_storyOBJ.storyObj.sceneArr[current].scene[0].loc.lat,_storyOBJ.storyObj.sceneArr[current].scene[0].loc.long);
+  opts={lat:_storyOBJ.storyObj.sceneArr[current].scene[0].loc.lat, long:_storyOBJ.storyObj.sceneArr[current].scene[0].loc.long, pitch: _storyOBJ.storyObj.sceneArr[current].scene[0].loc.pov.pitch, heading:_storyOBJ.storyObj.sceneArr[current].scene[0].loc.pov.heading};
+  window.openI.geoLocate(opts);
+
+  $('#sceneContainer').append(canvasStory);
+  aniWebGL = null;
+  $('#panoSceneCanvas').html("");
+  $('#panoSceneCanvas').width($('#pano').width());
+  window.openI.initStorySeq({storyImg: _storyOBJ.storyObj.sceneArr[current].scene[0].storySequenceJpg, setup:true});
+}
+
+window.openI.geoLocate = function(options){
+  //mapping
+  loc = new google.maps.LatLng(options.lat,options.long);
   var mapOptions = {
     center: loc,
     zoom: 14,
@@ -267,22 +264,18 @@ function sceneIncrementFunction(current){
   panoramaOptions = {
     position: loc,
     pov: {
-      heading: _storyOBJ.storyObj.sceneArr[current].scene[0].loc.pov.heading,
-      pitch: _storyOBJ.storyObj.sceneArr[current].scene[0].loc.pov.pitch
+      heading: options.heading,
+      pitch: options.pitch
     }
   };
 
   panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions);
   map.setStreetView(panorama);
-  $('#pano').append(canvasStory);
-  aniWebGL = null;
-  $('#panoSceneCanvas').html("");
-  window.openI.initStorySeq({storyImg: _storyOBJ.storyObj.sceneArr[current].scene[0].storySequenceJpg, setup:true});
 }
 
 window.openI.initStorySeqStage = function(options){
   if(options.styOption != undefined){
-      options.text = _storyOBJ.storyObj.sceneArr[currentScene].scene[0].results[options.styOption];
+      options.text = _storyOBJ.storyObj.sceneArr[currentScene].scene[0].results[options.styOption].plot;
       options.storyImg = _storyOBJ.storyObj.sceneArr[currentScene].scene[0].choicesImgs[options.styOption];
       var bgTexture = PIXI.Texture.fromImage(options.storyImg.img);
       var bgSpriSq = new PIXI.Sprite(bgTexture);
@@ -309,8 +302,22 @@ window.openI.initStorySeqStage = function(options){
         count = 0;
         stage1.children[0].children[0].text = currentText;
       }
+      if(_storyOBJ.storyObj.sceneArr[currentScene].scene[0].results[options.styOption].loc != undefined){
+        opts={lat:_storyOBJ.storyObj.sceneArr[currentScene].scene[0].results[options.styOption].loc.lat,long:_storyOBJ.storyObj.sceneArr[currentScene].scene[0].results[options.styOption].loc.long, pitch: _storyOBJ.storyObj.sceneArr[currentScene].scene[0].results[options.styOption].loc.pov.pitch, heading: _storyOBJ.storyObj.sceneArr[currentScene].scene[0].results[options.styOption].loc.pov.heading};
+        window.openI.geoLocate(opts);
+      }
     }
+
 }
+
+window.openI.saveData = function(options) {
+        window.sessionStorage.setItem(options.key, JSON.stringify(options.json));
+}
+
+window.openI.initHero = function(){
+  hero = {actions:[],clues:[],inventory:[],scenePoints:0};
+  window.openI.saveData({key:'hero', json:hero});
+}();
 
 window.openI.initStorySeq = function(options){
     if(options.setup != undefined && options.setup == true){
@@ -387,7 +394,6 @@ startUp = function(){
     sqOrder = 0;
     txt2Render = _storyOBJ.storyObj.sceneArr[sqOrder].scene[sqOrder].storySequence;
     renderer1 = new PIXI.CanvasRenderer($('#mainPixiInfo').width(), $('#mainPixiInfo').height(), document.getElementById('mainPixiInfo')); 
-   // $('#mainPixiInfo').append(renderer1.view);
     var interactive = true;
     currentText = txt2Render[0];
     stage1 = new PIXI.Stage(0x002600, interactive);
@@ -409,12 +415,9 @@ startUp = function(){
         eval(_storyOBJ.storyObj.sceneArr[sqOrder].scene[sqOrder].action)
       }
     };
-
-  
-
-    //stage1.addChild(mainPixiInfoDisplay);
     count = 0;
     tCount = 1;
+
     function animateText() {   
             count++;
             if(count == 2 && txt2Render.length > tCount)
