@@ -90,12 +90,28 @@ module.exports={
             ],
             "results": [
               {
+                "loc": {
+                  "pov": {
+                    "pitch": 0,
+                    "heading": 95
+                  },
+                  "lat": 38.095104,
+                  "long": -122.14179
+                },
                 "plot": "The CSI Investgators of outlined some evidence.  You need to examine the scene and build up evidence to find the susupect.",
                 "options": [
                   
                 ]
               },
               {
+                "loc": {
+                  "pov": {
+                    "pitch": 0,
+                    "heading": 200
+                  },
+                  "lat": 38.098328,
+                  "long": -122.152562
+                },
                 "plot": "You meet Jacob a farmer who lives near to lake herman. He says he saw a black suv with a hunter in the area.  He also said the hunter was covered in blood.",
                 "options": [
                   
